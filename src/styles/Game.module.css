@@ -1,10 +1,20 @@
+html {
+  overflow-x: hidden;
+}
 .gameMainCont {
   width: 100%;
+
 }
 
 .gameImage {
   width: 100%;
   height: 100%;
+  overflow: -moz-hidden-unscrollable;
+}
+
+.clickMenuCont {
+  position: absolute;
+  scrollbar-color: gray #1b1b1b;
 }
 
 .circleClicked {
@@ -21,6 +31,17 @@
   border-radius: 50%;
 }
 
+
+.clickMenuLi {
+  border-bottom: 1px solid white;
+}
+.clickMenuLi button {
+  width: 100%;
+  background-color: transparent;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
 @keyframes spin {
   from {
     transform: rotate(0deg);

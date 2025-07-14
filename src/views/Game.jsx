@@ -5,7 +5,6 @@ import styles from "../styles/Game.module.css";
 import iSpy10 from "../assets/i_spy_10.jpg";
 
 const Game = () => {
-
   const [pointClicked, setPointClicked] = useState(null);
   const [targetOptions, setTargetOptions] = useState({
     targetWidth: 100,
@@ -14,6 +13,9 @@ const Game = () => {
     reticleColor: "red",
     reticleWidth: 10,
     reticleStyle: "dashed",
+    menuWidth: 200,
+    menuHeight: 200,
+    menuFontSize: '1.2rem',
   });
   const { difficulty } = useParams();
 
@@ -36,6 +38,12 @@ const Game = () => {
     }
   }, [pointClicked])
 
+  const orientDropDownMenu = () => {
+    let translateX = ((pointClicked.xPageCoord + targetOptions.menuWidth) > pointClicked.windowWidth ? 'translateX(-100%)' : '');
+    let translateY = ((pointClicked.yPageCoord + targetOptions.menuHeight) > pointClicked.windowHeight ? 'translateY(-100%)' : '');
+    return translateX + translateY;
+  }
+
 
   const handleImageClick = (e) => {
     const image = document.getElementById('gameImage');
@@ -51,7 +59,7 @@ const Game = () => {
     <>
       <main className={styles.gameMainCont}>
         <img id="gameImage" onClick={handleImageClick} className={styles.gameImage} src={iSpy10}></img>
-        {pointClicked == null ? null : (
+               {pointClicked == null ? null : (
           <div
             className={styles.circleClicked}
             style={{
@@ -81,6 +89,38 @@ const Game = () => {
             ></div>
           </div>
         )}
+        {pointClicked == null ? null : (
+          <div className={`${styles.clickMenuCont} clickMenuCont`} style={{
+            backgroundColor: '#1b1b1b',
+            top: pointClicked.yPageCoord,
+            left: pointClicked.xPageCoord,
+            padding: '1rem 1rem',
+            borderRadius: '15px',
+            width: `${targetOptions.menuWidth}px`,
+            height: `${targetOptions.menuHeight}px`,
+            overflowY: 'auto',
+            transform: orientDropDownMenu(),
+          }}>
+            <ul className={styles.clickMenuUl} style={{
+              listStyleType: 'none',
+              color: 'white',
+              display: 'flex',
+              flexDirection: 'column',
+              gap: '1rem',
+            }}>
+              {[ '','' ,'' , '','' , '', ''].map((item, indx) => {
+                return (
+                <li key={indx} className={styles.clickMenuLi}>
+                  <button style={{
+                    fontSize: targetOptions.menuFontSize,
+                  }}>Menu Item {indx}</button>
+                </li>
+                )
+              })}
+            </ul>
+          </div>
+        )}
+
       </main>
     </>
   );
