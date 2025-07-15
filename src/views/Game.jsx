@@ -13,53 +13,81 @@ const Game = () => {
     reticleColor: "red",
     reticleWidth: 10,
     reticleStyle: "dashed",
+    isMenuActive: false,
     menuWidth: 200,
     menuHeight: 200,
-    menuFontSize: '1.2rem',
+    menuFontSize: "1.2rem",
   });
   const { difficulty } = useParams();
 
   useEffect(() => {
     const handleWindowResize = () => {
-      const image = document.getElementById('gameImage');
+      const image = document.getElementById("gameImage");
       setPointClicked({
         ...pointClicked,
-        xPageCoord: ((image.offsetWidth / pointClicked.windowWidth) * pointClicked.xPageCoord),
-        yPageCoord: ((image.offsetHeight / pointClicked.windowHeight) * pointClicked.yPageCoord),
+        xPageCoord:
+          (image.offsetWidth / pointClicked.windowWidth) *
+          pointClicked.xPageCoord,
+        yPageCoord:
+          (image.offsetHeight / pointClicked.windowHeight) *
+          pointClicked.yPageCoord,
         windowWidth: image.offsetWidth,
         windowHeight: image.offsetHeight,
-      })
-
+      });
     };
 
-    window.addEventListener('resize', handleWindowResize);
+    window.addEventListener("resize", handleWindowResize);
     return () => {
-      window.removeEventListener('resize', handleWindowResize)
-    }
-  }, [pointClicked])
+      window.removeEventListener("resize", handleWindowResize);
+    };
+  }, [pointClicked]);
 
   const orientDropDownMenu = () => {
-    let translateX = ((pointClicked.xPageCoord + targetOptions.menuWidth) > pointClicked.windowWidth ? 'translateX(-100%)' : '');
-    let translateY = ((pointClicked.yPageCoord + targetOptions.menuHeight) > pointClicked.windowHeight ? 'translateY(-100%)' : '');
+    let translateX =
+      pointClicked.xPageCoord + targetOptions.menuWidth >
+      pointClicked.windowWidth
+        ? "translateX(-100%)"
+        : "";
+    let translateY =
+      pointClicked.yPageCoord + targetOptions.menuHeight >
+      pointClicked.windowHeight
+        ? "translateY(-100%)"
+        : "";
     return translateX + translateY;
-  }
-
+  };
 
   const handleImageClick = (e) => {
-    const image = document.getElementById('gameImage');
-    setPointClicked({
-      xPageCoord: e.pageX,
-      yPageCoord: e.pageY,
-      windowWidth: image.offsetWidth,
-      windowHeight: image.offsetHeight,
-    });
+    const image = document.getElementById("gameImage");
+    if (targetOptions.isMenuActive) {
+      setTargetOptions({
+        ...targetOptions,
+        isMenuActive: false,
+      });
+      setPointClicked(null);
+    } else {
+      setTargetOptions({
+        ...targetOptions,
+        isMenuActive: true,
+      });
+      setPointClicked({
+        xPageCoord: e.pageX,
+        yPageCoord: e.pageY,
+        windowWidth: image.offsetWidth,
+        windowHeight: image.offsetHeight,
+      });
+    }
   };
 
   return (
-    <>
+    <div className={styles.overflowHiddenCont}>
       <main className={styles.gameMainCont}>
-        <img id="gameImage" onClick={handleImageClick} className={styles.gameImage} src={iSpy10}></img>
-               {pointClicked == null ? null : (
+        <img
+          id="gameImage"
+          onClick={handleImageClick}
+          className={styles.gameImage}
+          src={iSpy10}
+        ></img>
+        {pointClicked == null ? null : (
           <div
             className={styles.circleClicked}
             style={{
@@ -85,44 +113,54 @@ const Game = () => {
                 backgroundColor: targetOptions.targetDotColor,
                 top: '50%',
                 left: '50%',
+                position: "absolute",
               }}
             ></div>
           </div>
         )}
-        {pointClicked == null ? null : (
-          <div className={`${styles.clickMenuCont} clickMenuCont`} style={{
-            backgroundColor: '#1b1b1b',
-            top: pointClicked.yPageCoord,
-            left: pointClicked.xPageCoord,
-            padding: '1rem 1rem',
-            borderRadius: '15px',
-            width: `${targetOptions.menuWidth}px`,
-            height: `${targetOptions.menuHeight}px`,
-            overflowY: 'auto',
-            transform: orientDropDownMenu(),
-          }}>
-            <ul className={styles.clickMenuUl} style={{
-              listStyleType: 'none',
-              color: 'white',
-              display: 'flex',
-              flexDirection: 'column',
-              gap: '1rem',
-            }}>
-              {[ '','' ,'' , '','' , '', ''].map((item, indx) => {
+        {pointClicked == null || !targetOptions.isMenuActive ? null : (
+          <div
+            className={`${styles.clickMenuCont} clickMenuCont`}
+            style={{
+              backgroundColor: "#1b1b1b",
+              top: pointClicked.yPageCoord,
+              left: pointClicked.xPageCoord,
+              padding: "1rem 1rem",
+              borderRadius: "15px",
+              width: `${targetOptions.menuWidth}px`,
+              height: `${targetOptions.menuHeight}px`,
+              overflowY: "auto",
+              transform: orientDropDownMenu(),
+            }}
+          >
+            <ul
+              className={styles.clickMenuUl}
+              style={{
+                listStyleType: "none",
+                color: "white",
+                display: "flex",
+                flexDirection: "column",
+                gap: "1rem",
+              }}
+            >
+              {["", "", "", "", "", "", ""].map((item, indx) => {
                 return (
-                <li key={indx} className={styles.clickMenuLi}>
-                  <button style={{
-                    fontSize: targetOptions.menuFontSize,
-                  }}>Menu Item {indx}</button>
-                </li>
-                )
+                  <li key={indx} className={styles.clickMenuLi}>
+                    <button
+                      style={{
+                        fontSize: targetOptions.menuFontSize,
+                      }}
+                    >
+                      Menu Item {indx}
+                    </button>
+                  </li>
+                );
               })}
             </ul>
           </div>
         )}
-
       </main>
-    </>
+    </div>
   );
 };
 
