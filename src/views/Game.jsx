@@ -78,6 +78,24 @@ const Game = () => {
     }
   };
 
+  const submitPointClicked = (e, itemName) => {
+    e.preventDefault();
+    let formData = new FormData();
+    formData.append('windowWidth', pointClicked.windowWidth);
+    formData.append('windowHeight', pointClicked.windowHeight);
+    formData.append('xCoord', pointClicked.xPageCoord);
+    formData.append('yCoord', pointClicked.yPageCoord);
+    formData.append('itemName', itemName);
+
+    fetch(`http://localhost:3000/game/check-if-correct-coord`, {
+      method: 'POST',
+      body: new URLSearchParams(formData),
+    })
+    .then((res) => res.json())
+    .then((res) => console.log(res));
+
+}
+
   return (
     <div className={styles.overflowHiddenCont}>
       <main className={styles.gameMainCont}>
@@ -85,7 +103,7 @@ const Game = () => {
           id="gameImage"
           onClick={handleImageClick}
           className={styles.gameImage}
-          src={iSpy10}
+          src={'http://localhost:3000/images/i_spy_10.jpg'}
         ></img>
         {pointClicked == null ? null : (
           <div
@@ -133,6 +151,12 @@ const Game = () => {
               transform: orientDropDownMenu(),
             }}
           >
+            {console.log({
+              windowWidth: pointClicked.windowWidth,
+              windowHeight: pointClicked.windowHeight,
+              xCoord: pointClicked.xPageCoord,
+              yCoord: pointClicked.yPageCoord,
+            })}
             <ul
               className={styles.clickMenuUl}
               style={{
@@ -150,6 +174,8 @@ const Game = () => {
                       style={{
                         fontSize: targetOptions.menuFontSize,
                       }}
+                      type="button"
+                      onClick={(e) => submitPointClicked(e, item)}
                     >
                       Menu Item {indx}
                     </button>
