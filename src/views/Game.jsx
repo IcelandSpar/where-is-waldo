@@ -1,8 +1,10 @@
 import { useEffect, useState, useRef } from "react";
 import { useParams } from "react-router-dom";
 
-import SelectMenu from "./partials/SelectMenu.jsx";
+import Timer from './partials/Timer.jsx';
 import SubmitMsg from "./partials/SubmitMsg.jsx";
+import SelectMenu from "./partials/SelectMenu.jsx";
+
 
 import styles from "../styles/Game.module.css";
 import iSpy10 from "../assets/i_spy_10.jpg";
@@ -147,6 +149,7 @@ const Game = () => {
           className={styles.gameImage}
           src={"http://localhost:3000/images/i_spy_10.jpg"}
         ></img>
+        <Timer/>
         {submitResultMsg != null ? (
           <SubmitMsg setSubmitResultMsg={setSubmitResultMsg} submitResultMsg={submitResultMsg}/>
         ) : null}
