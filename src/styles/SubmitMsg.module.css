@@ -1,0 +1,8 @@
+.msgCont {
+  top: .5rem;
+  right: .5rem;
+  position: fixed;
+  background-color: white;
+  padding: 1rem;
+  border-radius: 15px;
+}
