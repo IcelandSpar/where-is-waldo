@@ -7,8 +7,14 @@ const SubmitMsg = ({setSubmitResultMsg ,submitResultMsg}) => {
   }
   return (
     <div className={styles.msgCont}>
-      <button onClick={handleCloseBtn} type='button'>X</button>
-      <p>{submitResultMsg.message}</p>
+      <div className={styles.buttonMsgCont}>
+        <button className={styles.exitBtn} onClick={handleCloseBtn} type='button'>X</button>
+        <p>{submitResultMsg.message}</p>
+      </div>
+      <div className={styles.timeBarCont}>
+        <div className={styles.greyTimeBar}></div>
+        <div className={styles.timeBar}></div>
+      </div>
     </div>
   )
 };

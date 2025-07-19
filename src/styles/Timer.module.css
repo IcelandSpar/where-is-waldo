@@ -1,8 +1,8 @@
 .timerCont {
-  position: absolute;
   top: .5rem;
   left: .5rem;
-  border-radius: 15px;
-  background-color: white;
+  position: fixed;
+  border-radius: 10px;
+  background-color: rgb(255, 255, 255);
   padding: 1rem;
 }
