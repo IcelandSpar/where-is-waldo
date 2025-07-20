@@ -1,0 +1,64 @@
+.itemListCont {
+  background-color: white;
+  position: fixed;
+  bottom: 1rem;
+  right: 1rem;
+  border-radius: 0 15px 15px 15px;
+}
+
+.itemListContRelativeCont {
+  position: relative;
+  width: 100%;
+  padding: 1rem;
+}
+
+.moveAsideBtn {
+  text-align: center;
+  border: none;
+  padding: .2rem .2rem;
+  border-radius: 5px 0 0 5px;
+  position: absolute;
+  left: -10%;
+  font-size: 2rem;
+  top: 0;
+  cursor: pointer;
+}
+
+.itemListUlCont {
+  list-style-type: none;
+}
+
+.itemListIlCont {
+  display: flex;
+  gap: .5rem;
+}
+
+.itemListContHide {
+  animation: .5s moveAside forwards ease-out;
+}
+
+.itemListContVisible {
+  animation: .5s moveIn forwards ease-out;
+}
+
+@keyframes moveAside {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes moveIn {
+  from {
+    transform: translateX(100%);
+
+  }
+
+  to {
+  transform: translateX(0);
+
+  }
+}

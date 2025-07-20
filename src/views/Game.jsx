@@ -2,6 +2,7 @@ import { useEffect, useState, useRef } from "react";
 import { useParams } from "react-router-dom";
 
 import Timer from './partials/Timer.jsx';
+import ItemList from './partials/ItemList.jsx';
 import SubmitMsg from "./partials/SubmitMsg.jsx";
 import SelectMenu from "./partials/SelectMenu.jsx";
 
@@ -195,6 +196,7 @@ const Game = () => {
             waldoItems={waldoItems}
           />
         )}
+        <ItemList/>
       </main>
     </div>
   );
