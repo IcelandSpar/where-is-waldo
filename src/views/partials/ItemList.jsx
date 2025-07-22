@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 import styles from '../../styles/ItemList.module.css';
 
-const ItemList = () => {
+const ItemList = ({ waldoItems }) => {
   const [ isItemListShown, setIsItemListShown ] = useState(true);
 
   const handleAsideBtn = (e) => {
@@ -16,26 +16,14 @@ const ItemList = () => {
         <h3>Items to find:</h3>
         <button onClick={handleAsideBtn} className={styles.moveAsideBtn}>{isItemListShown ? '-' : '+'}</button>
         <ul className={styles.itemListUlCont}>
-          <li className={styles.itemListIlCont}>
-            <div>✔️</div>
-            <div>Item 1</div>
-          </li>
-          <li className={styles.itemListIlCont}>
-            <div>✔️</div>
-            <div>Item 2</div>
-          </li>
-          <li className={styles.itemListIlCont}>
-            <div>✔️</div>
-            <div>Item 3</div>
-          </li>
-          <li className={styles.itemListIlCont}>
-            <div>✔️</div>
-            <div>Item 4</div>
-          </li>
-          <li className={styles.itemListIlCont}>
-            <div>✔️</div>
-            <div>item 5</div>
-          </li>
+          {waldoItems.map((item, index) => {
+            return (
+              <li className={styles.itemListIlCont}>
+                <div>{item.is_found ? '✔️': 'x'}</div>
+                <div>{item.item_name}</div>
+              </li>
+            )
+          })}
         </ul>
       </div>
     </div>

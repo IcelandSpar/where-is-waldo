@@ -26,12 +26,19 @@ const DifficultySelect = () => {
     })
     .then((res) => res.json())
     .then((res) => {
+          fetch(`${import.meta.env.VITE_FETCH_BASE_URL}/game/create-player-items/${game.image_id}/${res.player_id}`, {
+            method: 'POST'
+          })
+          .then((res) => res.json())
+          .then((res) => console.log(res))
           navigate(`/${game.image_id}/${res.player_id}/${game.difficulty}`);
-
     })
     .catch((err) => {
       console.error(err);
     });
+   
+
+
 
 
   }

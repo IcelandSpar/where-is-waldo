@@ -27,17 +27,16 @@ const Game = () => {
     menuHeight: 200,
     menuFontSize: "1.2rem",
   });
-  const { difficulty } = useParams();
+  const { difficulty, imageId, playerId } = useParams();
 
   useEffect(() => {
-    fetch(`http://localhost:3000/game/get-waldo-items`, {
+    fetch(`http://localhost:3000/game/get-player-items/${imageId}/${playerId}`, {
       method: "GET",
     })
       .then((res) => res.json())
       .then((res) => setWaldoItems(res));
 
-
-  }, []);
+  }, [imageId, playerId]);
 
   return (
     <div className={styles.overflowHiddenCont}>
@@ -47,7 +46,7 @@ const Game = () => {
           <SubmitMsg setSubmitResultMsg={setSubmitResultMsg} submitResultMsg={submitResultMsg}/>
         ) : null}
         <Image styles={styles} setTargetOptions={setTargetOptions}  targetOptions={targetOptions} waldoItems={waldoItems} setSubmitResultMsg={setSubmitResultMsg} completedWaldoItems={completedWaldoItems} setCompletedWaldoItems={setCompletedWaldoItems}/>
-        <ItemList/>
+        <ItemList waldoItems={waldoItems}/>
       </main>
     </div>
   );
