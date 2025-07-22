@@ -39,13 +39,6 @@ const Game = () => {
 
   }, []);
 
-
-
-
-
-
-
-
   return (
     <div className={styles.overflowHiddenCont}>
       <main className={styles.gameMainCont}>

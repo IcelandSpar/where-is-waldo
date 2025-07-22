@@ -7,7 +7,7 @@ const routes = [
     element: <Home/>,
   },
   {
-    path: '/where-is-waldo/:difficulty',
+    path: '/:imageId/:playerId/:difficulty',
     element: <Game/>,
   }
 ];
