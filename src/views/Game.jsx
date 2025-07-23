@@ -45,7 +45,7 @@ const Game = () => {
         {submitResultMsg != null ? (
           <SubmitMsg setSubmitResultMsg={setSubmitResultMsg} submitResultMsg={submitResultMsg}/>
         ) : null}
-        <Image styles={styles} setTargetOptions={setTargetOptions}  targetOptions={targetOptions} waldoItems={waldoItems} setSubmitResultMsg={setSubmitResultMsg} completedWaldoItems={completedWaldoItems} setCompletedWaldoItems={setCompletedWaldoItems}/>
+        <Image styles={styles} setWaldoItems={setWaldoItems} setTargetOptions={setTargetOptions}  targetOptions={targetOptions} waldoItems={waldoItems} setSubmitResultMsg={setSubmitResultMsg} completedWaldoItems={completedWaldoItems} setCompletedWaldoItems={setCompletedWaldoItems}/>
         <ItemList waldoItems={waldoItems}/>
       </main>
     </div>

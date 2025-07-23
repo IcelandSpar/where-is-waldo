@@ -27,6 +27,7 @@ const SelectMenu = ({ styles, targetOptions, pointClicked, orientDropDownMenu, s
               }}
             >
               { waldoItems.map((item, indx) => {
+                if(!item.is_found) {
                 return (
                   <li key={indx} className={styles.clickMenuLi}>
                     <button
@@ -40,6 +41,10 @@ const SelectMenu = ({ styles, targetOptions, pointClicked, orientDropDownMenu, s
                     </button>
                   </li>
                 );
+                } else {
+                  return null;
+                }
+
               })}
             </ul>
           </div>

@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 
 import SelectMenu from "./SelectMenu.jsx";
 
 
-const Image = ({ targetOptions, setTargetOptions, styles, waldoItems, setSubmitResultMsg, completedWaldoItems, setCompletedWaldoItems }) => {
+const Image = ({ targetOptions, setTargetOptions, styles, waldoItems, setSubmitResultMsg, completedWaldoItems, setCompletedWaldoItems, setWaldoItems }) => {
   const [ pointClicked, setPointClicked ] = useState(null);
   
+  const { imageId, playerId } = useParams();
 
   useEffect(() => {
     const handleWindowResize = () => {
@@ -70,11 +72,13 @@ const Image = ({ targetOptions, setTargetOptions, styles, waldoItems, setSubmitR
     const submitMsgTimeout = setTimeout(() => {
       setSubmitResultMsg(null);
     }, 3000)
-  }
+  };
 
     const submitPointClicked = (e, itemName) => {
     e.preventDefault();
     let formData = new FormData();
+    formData.append('imageId', imageId);
+    formData.append('playerId', playerId);
     formData.append("windowWidth", pointClicked.windowWidth);
     formData.append("windowHeight", pointClicked.windowHeight);
     formData.append("xCoord", pointClicked.xPageCoord);
@@ -95,6 +99,11 @@ const Image = ({ targetOptions, setTargetOptions, styles, waldoItems, setSubmitR
             isCorrect: true,
             message: 'Correct!',
           })
+            fetch(`http://localhost:3000/game/get-player-items/${imageId}/${playerId}`, {
+            method: "GET",
+            })
+            .then((res) => res.json())
+            .then((res) => setWaldoItems(res));
         } else if(!res.coordResult) {
           setSubmitResultMsg({
             isCorrect: false,
