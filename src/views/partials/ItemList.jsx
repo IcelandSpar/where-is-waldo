@@ -19,7 +19,7 @@ const ItemList = ({ waldoItems }) => {
           {waldoItems == null ? null : (
           waldoItems.map((item, index) => {
             return (
-              <li className={styles.itemListIlCont}>
+              <li className={styles.itemListIlCont} key={index}>
                 <div>{item.is_found ? '✔️': 'x'}</div>
                 <div>{item.item_name}</div>
               </li>

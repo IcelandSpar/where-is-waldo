@@ -12,6 +12,7 @@ import styles from "../styles/Game.module.css";
 import iSpy10 from "../assets/i_spy_10.jpg";
 
 const Game = () => {
+  const [ isGameWon, setIsGameWon ] = useState(false);
   const [ waldoItems, setWaldoItems ] = useState();
   const [ completedWaldoItems, setCompletedWaldoItems ] = useState([]);
   const [ submitResultMsg, setSubmitResultMsg ] = useState(null);
@@ -45,7 +46,7 @@ const Game = () => {
         {submitResultMsg != null ? (
           <SubmitMsg setSubmitResultMsg={setSubmitResultMsg} submitResultMsg={submitResultMsg}/>
         ) : null}
-        <Image styles={styles} setWaldoItems={setWaldoItems} setTargetOptions={setTargetOptions}  targetOptions={targetOptions} waldoItems={waldoItems} setSubmitResultMsg={setSubmitResultMsg} completedWaldoItems={completedWaldoItems} setCompletedWaldoItems={setCompletedWaldoItems}/>
+        <Image styles={styles}setIsGameWon={setIsGameWon}  setWaldoItems={setWaldoItems} setTargetOptions={setTargetOptions}  targetOptions={targetOptions} waldoItems={waldoItems} setSubmitResultMsg={setSubmitResultMsg} completedWaldoItems={completedWaldoItems} setCompletedWaldoItems={setCompletedWaldoItems}/>
         <ItemList waldoItems={waldoItems}/>
       </main>
     </div>

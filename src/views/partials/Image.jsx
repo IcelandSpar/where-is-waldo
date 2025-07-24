@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import SelectMenu from "./SelectMenu.jsx";
 
 
-const Image = ({ targetOptions, setTargetOptions, styles, waldoItems, setSubmitResultMsg, completedWaldoItems, setCompletedWaldoItems, setWaldoItems }) => {
+const Image = ({ targetOptions, setTargetOptions, styles, waldoItems, setSubmitResultMsg, completedWaldoItems, setCompletedWaldoItems, setWaldoItems, setIsGameWon }) => {
   const [ pointClicked, setPointClicked ] = useState(null);
   
   const { imageId, playerId } = useParams();
@@ -74,6 +74,16 @@ const Image = ({ targetOptions, setTargetOptions, styles, waldoItems, setSubmitR
     }, 3000)
   };
 
+  const checkIfGameWon = (imageId, playerId) => {
+    fetch(`${import.meta.env.VITE_FETCH_BASE_URL}/game/check-if-all-items-found/${imageId}/${playerId}`, {
+      method: 'GET',
+    })
+    .then((res) => res.json())
+    .then((res) => {
+      setIsGameWon(res.allItemsFound)
+    })
+  }
+
     const submitPointClicked = (e, itemName) => {
     e.preventDefault();
     let formData = new FormData();
@@ -103,7 +113,11 @@ const Image = ({ targetOptions, setTargetOptions, styles, waldoItems, setSubmitR
             method: "GET",
             })
             .then((res) => res.json())
-            .then((res) => setWaldoItems(res));
+            .then((res) => {
+            checkIfGameWon(imageId, playerId)
+            setWaldoItems(res)
+            });
+
         } else if(!res.coordResult) {
           setSubmitResultMsg({
             isCorrect: false,
