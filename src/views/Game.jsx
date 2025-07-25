@@ -6,6 +6,7 @@ import Timer from './partials/Timer.jsx';
 import ItemList from './partials/ItemList.jsx';
 import SubmitMsg from "./partials/SubmitMsg.jsx";
 import SelectMenu from "./partials/SelectMenu.jsx";
+import GameEndModal from "./partials/GameEndModal.jsx";
 
 
 import styles from "../styles/Game.module.css";
@@ -41,8 +42,9 @@ const Game = () => {
 
   return (
     <div className={styles.overflowHiddenCont}>
+      {isGameWon ? (<GameEndModal/>) : null}
       <main className={styles.gameMainCont}>
-        <Timer/>
+        <Timer isGameWon={isGameWon}/>
         {submitResultMsg != null ? (
           <SubmitMsg setSubmitResultMsg={setSubmitResultMsg} submitResultMsg={submitResultMsg}/>
         ) : null}
