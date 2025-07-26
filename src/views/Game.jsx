@@ -14,6 +14,7 @@ import iSpy10 from "../assets/i_spy_10.jpg";
 
 const Game = () => {
   const [ isGameWon, setIsGameWon ] = useState(false);
+  const [ gameEndResults, setGameEndResults ] = useState(null);
   const [ waldoItems, setWaldoItems ] = useState();
   const [ completedWaldoItems, setCompletedWaldoItems ] = useState([]);
   const [ submitResultMsg, setSubmitResultMsg ] = useState(null);
@@ -42,13 +43,13 @@ const Game = () => {
 
   return (
     <div className={styles.overflowHiddenCont}>
-      {isGameWon ? (<GameEndModal/>) : null}
+      {isGameWon ? (<GameEndModal gameEndResults={gameEndResults}/>) : null}
       <main className={styles.gameMainCont}>
         <Timer isGameWon={isGameWon}/>
         {submitResultMsg != null ? (
           <SubmitMsg setSubmitResultMsg={setSubmitResultMsg} submitResultMsg={submitResultMsg}/>
         ) : null}
-        <Image styles={styles}setIsGameWon={setIsGameWon}  setWaldoItems={setWaldoItems} setTargetOptions={setTargetOptions}  targetOptions={targetOptions} waldoItems={waldoItems} setSubmitResultMsg={setSubmitResultMsg} completedWaldoItems={completedWaldoItems} setCompletedWaldoItems={setCompletedWaldoItems}/>
+        <Image styles={styles}setIsGameWon={setIsGameWon}  setWaldoItems={setWaldoItems} setTargetOptions={setTargetOptions}  targetOptions={targetOptions} waldoItems={waldoItems} setSubmitResultMsg={setSubmitResultMsg} completedWaldoItems={completedWaldoItems} setCompletedWaldoItems={setCompletedWaldoItems} setGameEndResults={setGameEndResults}/>
         <ItemList waldoItems={waldoItems}/>
       </main>
     </div>

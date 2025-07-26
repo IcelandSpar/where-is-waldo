@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import SelectMenu from "./SelectMenu.jsx";
 
 
-const Image = ({ targetOptions, setTargetOptions, styles, waldoItems, setSubmitResultMsg, completedWaldoItems, setCompletedWaldoItems, setWaldoItems, setIsGameWon }) => {
+const Image = ({ targetOptions, setTargetOptions, styles, waldoItems, setSubmitResultMsg, completedWaldoItems, setCompletedWaldoItems, setWaldoItems, setIsGameWon, setGameEndResults }) => {
   const [ pointClicked, setPointClicked ] = useState(null);
   
   const { imageId, playerId } = useParams();
@@ -80,6 +80,7 @@ const Image = ({ targetOptions, setTargetOptions, styles, waldoItems, setSubmitR
     })
     .then((res) => res.json())
     .then((res) => {
+      setGameEndResults(res.endGameResults);
       setIsGameWon(res.allItemsFound)
     })
   }

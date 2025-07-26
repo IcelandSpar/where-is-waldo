@@ -16,5 +16,5 @@
   padding: 1rem;
   width: 100%;
   max-width: 500px;
-  transform: translateY(50%) translateX(-50%);
+  transform: translateY(-50%) translateX(-50%);
 }
