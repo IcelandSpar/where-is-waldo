@@ -2,7 +2,6 @@ import { formatDistanceStrict } from 'date-fns';
 import { Link } from 'react-router-dom';
 
 import styles from '../../styles/GameEndModal.module.css';
-import { minTime, secondsInMinute } from 'date-fns/constants';
 
 const GameEndModal = ({gameEndResults}) => {
   return (
