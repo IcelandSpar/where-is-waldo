@@ -1,0 +1,23 @@
+.playerNameForm {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.formLabelAndInput {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  text-align: center;
+  align-items: center;
+  font-size: 1.5rem;
+}
+
+.formInput {
+  font-size: 1.5rem;
+  padding: .5rem 1rem;
+}
+
+.enterPlayerNameBtn {
+  padding: .5rem 1rem;
+}

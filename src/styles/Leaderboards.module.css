@@ -1,0 +1,17 @@
+table {
+  margin: 0 auto;
+  text-align: center;
+}
+
+caption {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+th {
+  padding: 1rem;
+}
+
+td {
+  padding: 1rem;
+}

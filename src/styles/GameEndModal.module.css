@@ -17,4 +17,14 @@
   width: 100%;
   max-width: 500px;
   transform: translateY(-50%) translateX(-50%);
+  border-radius: 15px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: center;
+}
+
+.resultsHeading {
+  font-size: 2rem;
 }

@@ -40,7 +40,7 @@ const Leaderboards = () => {
                 <td>{playerRecord.image_name}</td>
                 <td>{playerRecord.difficulty}</td>
                 <td>{format(playerRecord.end_time, 'LLL-d-y')}</td>
-                <td>{playerRecord.difference}</td>
+                <td>{parseFloat(playerRecord.difference).toFixed(2)} Seconds</td>
               </tr>
             )
           })
