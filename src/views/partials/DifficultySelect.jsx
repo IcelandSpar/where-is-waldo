@@ -4,9 +4,9 @@ import { useEffect, useState } from "react";
 import styles from "../../styles/DifficultySelect.module.css";
 
 const DifficultySelect = () => {
-  const [ gameImages, setGameImages ] = useState([]);
-  const [ isLoading, setIsLoading ] = useState(false);
-  const [ fetchErr, setFetchErr ] = useState(false);
+  const [gameImages, setGameImages] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [fetchErr, setFetchErr] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -24,8 +24,8 @@ const DifficultySelect = () => {
         console.error(err);
         if (err) {
           setFetchErr(true);
-        };
-      })
+        }
+      });
   }, []);
 
   const handleGameSelectBtn = (e, game) => {
@@ -59,20 +59,34 @@ const DifficultySelect = () => {
       });
   };
 
+  const capitalizeFirstLetter = (str) => {
+    let capitalizedFirstLetter = str[0].toUpperCase();
+    return capitalizedFirstLetter + str.slice(1);
+  }
+
   return (
     <>
-      <h2>Choose a Game</h2>
+      <h2 className={styles.chooseGameHeading}>Choose a Game</h2>
       {isLoading && !fetchErr ? <p>Loading Games...</p> : null}
       {fetchErr ? <p>Something went wrong</p> : null}
       {gameImages == null ? null : (
         <ul className={styles.gameListUl}>
           {gameImages.map((game, index) => {
             return (
-              <li className={styles.gameListLi} key={game.image_id}>
-                <button onClick={(e) => handleGameSelectBtn(e, game)}>
-                  {game.image_name}
-                </button>
-                <p>Difficulty: {game.difficulty}</p>
+              <li
+                onClick={(e) => handleGameSelectBtn(e, game)}
+                className={styles.gameListLi}
+                key={game.image_id}
+                style={{
+                  backgroundImage: `url(${
+                    import.meta.env.VITE_FETCH_BASE_URL
+                  }/public/${game.image_path})`,
+                }}
+              >
+                <div className={styles.backgroundDimmer}>
+                  <h3 className={styles.gameTitle}>{game.image_name}</h3>
+                  <p className={styles.gameDifficulty}>Difficulty: {capitalizeFirstLetter(game.difficulty)}</p>
+                </div>
               </li>
             );
           })}

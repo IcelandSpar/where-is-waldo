@@ -1,0 +1,16 @@
+.homePageCont {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 100%;
+  max-width: 1200px;
+  margin: 10rem auto;
+}
+
+.homeHeading {
+  text-align: center;
+}
+
+.homeParaCont {
+  text-align: center;
+}

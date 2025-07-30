@@ -1,12 +1,31 @@
 table {
   margin: 0 auto;
   text-align: center;
+  border-radius: 15px;
 }
 
 caption {
   font-size: 2rem;
   margin-bottom: 1rem;
 }
+
+thead th:last-child {
+  border-radius:  0 15px 0 0;
+}
+
+thead th:first-child {
+  border-radius:  15px 0 0 0;
+
+}
+
+tbody tr:last-child th:first-child {
+  border-radius: 0 0 0 15px;
+}
+
+tbody tr:last-child td:last-child {
+  border-radius: 0 0 15px 0;
+}
+
 
 th {
   padding: 1rem;

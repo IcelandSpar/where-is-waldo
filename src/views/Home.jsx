@@ -5,13 +5,15 @@ import styles from '../styles/Home.module.css';
 
 const Home = () => {
   return (
-    <>
-    <h1>Where's Waldo?</h1>
-    <p>Where is he?</p>
-    <p>Find him, before he finds you</p>
+    <div className={styles.homePageCont}>
+    <h1 className={styles.homeHeading}>Where's Waldo?</h1>
+    <div className={styles.homeParaCont}>
+      <p>Where is he?</p>
+      <p>Find him, before he finds you...</p>
+    </div>
     <DifficultySelect/>
     <LeaderBoards/>
-    </>
+    </div>
   )
 };
 
