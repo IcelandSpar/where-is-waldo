@@ -9,7 +9,7 @@
 .chooseGameHeading {
   text-align: center;
   font-size: 2rem;
-  text-decoration: 2px solid #c89f56 underline;
+  text-decoration: 3px dashed #c89f56 underline;
   text-underline-offset: .5rem;
 }
 

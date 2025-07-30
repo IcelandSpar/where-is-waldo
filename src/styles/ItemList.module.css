@@ -4,6 +4,9 @@
   bottom: 1rem;
   right: 1rem;
   border-radius: 0 15px 15px 15px;
+  background-color: rgba(0, 0, 0, 0.815);
+  border: 2px solid #c89f56;
+  color: white;
 }
 
 .itemListContRelativeCont {
@@ -12,26 +15,36 @@
   padding: 1rem;
 }
 
+.itemListHeading {
+  font-family: 'Bitcount';
+}
+
 .moveAsideBtn {
   text-align: center;
-  border: none;
+  border: 2px solid #c89f56;
+  border-right: none;
   padding: .2rem .2rem;
   border-radius: 5px 0 0 5px;
   position: absolute;
-  left: -10%;
+  left: -16%;
   font-size: 2rem;
-  top: 0;
+  top: -2px;
   cursor: pointer;
+  background-color: rgba(0, 0, 0, 0.815);
 }
 
 .itemListUlCont {
   list-style-type: none;
 }
 
-.itemListIlCont {
+.itemListLiCont {
   display: flex;
   gap: .5rem;
+  font-family: 'Bitcount Grid Single';
+  align-items: center;
 }
+
+
 
 .itemListContHide {
   animation: .5s moveAside forwards ease-out;
@@ -41,13 +54,16 @@
   animation: .5s moveIn forwards ease-out;
 }
 
+.itemListIconOpen {
+}
+
 @keyframes moveAside {
   from {
     transform: translateX(0);
   }
 
   to {
-    transform: translateX(100%);
+    transform: translateX(110%);
   }
 }
 
