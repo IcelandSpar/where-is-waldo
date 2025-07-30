@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 
 import styles from "../../styles/DifficultySelect.module.css";
 
-const DifficultySelect = () => {
+const DifficultySelect = ({capitalizeFirstLetter}) => {
   const [gameImages, setGameImages] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [fetchErr, setFetchErr] = useState(false);
@@ -59,10 +59,7 @@ const DifficultySelect = () => {
       });
   };
 
-  const capitalizeFirstLetter = (str) => {
-    let capitalizedFirstLetter = str[0].toUpperCase();
-    return capitalizedFirstLetter + str.slice(1);
-  }
+
 
   return (
     <>

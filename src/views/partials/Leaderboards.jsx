@@ -3,7 +3,7 @@ import { format } from "date-fns";
 
 import styles from "../../styles/Leaderboards.module.css";
 
-const Leaderboards = () => {
+const Leaderboards = ({capitalizeFirstLetter}) => {
   const [ leaderboard, setLeaderboard ] = useState(null);
   const [ leaderboardLimit, setLeaderboardLimit ] = useState(10);
   const [ loadingLeaderboard, setLoadingLeaderboard ] = useState(false);
@@ -31,8 +31,8 @@ const Leaderboards = () => {
         <p>Loading Leaderboard...</p>
       ) : null}
       {!leaderboard ? null : (
-        <table border={1}>
-          <caption>Top 10 Players of all games</caption>
+        <table>
+          <caption className={styles.leaderboardCaption}>Top 10 Players of all games</caption>
           <thead>
             <tr>
               <th>Player Name</th>
@@ -50,7 +50,7 @@ const Leaderboards = () => {
                     <tr key={playerRecord.player_id}>
                       <th>{playerRecord.name}</th>
                       <td>{playerRecord.image_name}</td>
-                      <td>{playerRecord.difficulty}</td>
+                      <td>{capitalizeFirstLetter(playerRecord.difficulty)}</td>
                       <td>{format(playerRecord.end_time, "LLL-d-y")}</td>
                       <td>
                         {parseFloat(playerRecord.difference).toFixed(2)} Seconds
