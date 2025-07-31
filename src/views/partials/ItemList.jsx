@@ -18,7 +18,7 @@ const ItemList = ({ waldoItems }) => {
   return (
     <div className={`${styles.itemListCont} ${isItemListShown ? styles.itemListContVisible : styles.itemListContHide}`}>
       <div className={styles.itemListContRelativeCont}>
-        <h3 className={styles.itemListHeading}>Items to find:</h3>
+        <h3 className={styles.itemListHeading}>Find the Items</h3>
         <button onClick={handleAsideBtn} className={styles.moveAsideBtn}>{isItemListShown ? <img className={styles.itemListIconOpen} alt='Close Item List' src={menuArrowCloseIcon} width={'24px'} height={'24px'}/> : <img className={styles.itemListIconOpen} alt='Open Item List' src={menuArrowOpenIcon} width={'24px'} height={'24px'}/>}</button>
         <ul className={styles.itemListUlCont}>
           {waldoItems == null ? null : (

@@ -17,6 +17,8 @@
 
 .itemListHeading {
   font-family: 'Bitcount';
+  border-bottom: 1px dashed #c89f56;
+  margin-bottom: 1rem;
 }
 
 .moveAsideBtn {
@@ -47,11 +49,11 @@
 
 
 .itemListContHide {
-  animation: .5s moveAside forwards ease-out;
+  animation: .3s moveAside forwards ease-out;
 }
 
 .itemListContVisible {
-  animation: .5s moveIn forwards ease-out;
+  animation: .3s moveIn forwards ease-out;
 }
 
 .itemListIconOpen {

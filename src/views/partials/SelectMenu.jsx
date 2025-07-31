@@ -1,4 +1,3 @@
-
 const SelectMenu = ({ styles, targetOptions, pointClicked, orientDropDownMenu, submitPointClicked, waldoItems }) => {
 
   return (
@@ -16,6 +15,7 @@ const SelectMenu = ({ styles, targetOptions, pointClicked, orientDropDownMenu, s
               transform: orientDropDownMenu(),
             }}
           >
+            <h4 className={styles.menuSelectHeading}>Choose an Item</h4>
             <ul
               className={styles.clickMenuUl}
               style={{

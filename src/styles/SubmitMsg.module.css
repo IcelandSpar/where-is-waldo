@@ -2,16 +2,19 @@
   top: .5rem;
   right: .5rem;
   position: fixed;
-  background-color: white;
+  background-color: #1b1b1b;
   padding: 1rem;
   border-radius: 10px;
   animation: 3s slide-in ease-out forwards;
+  margin: 0 auto;
 }
 
 .buttonMsgCont {
   display: flex;
   gap: .5rem;
   align-items: center;
+  font-family: 'Bitcount Grid Single';
+  color: white;
 }
 
 .exitBtn {
@@ -21,6 +24,7 @@
   background-color: transparent;
   border: none;
   cursor: pointer;
+  color: white;
 }
 
 .timeBarCont {
@@ -30,7 +34,7 @@
 .greyTimeBar {
   position: absolute;
   width: 100%;
-  background-color: grey;
+  background-color: #663031;
   height: 2px;
   top: .3rem;
 
@@ -41,7 +45,7 @@
   top: .3rem;
   width: 100%;
   height: 3px;
-  background-color: blue;
+  background-color: #c89f56;
   animation: 2.5s reduceTimeBar linear forwards;
 }
 
