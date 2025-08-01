@@ -31,8 +31,8 @@ const PlayerNameForm = () => {
   return (
     <form className={styles.playerNameForm} >
       <div className={styles.formLabelAndInput}>
-        <label htmlFor="playerName">Player Name:</label>
-        <input className={styles.formInput} ref={playerNameInputRef} type="text" id="playerName" name="playerName" defaultValue={'Anon'}/>
+        <label htmlFor="playerName" className={styles.enterNameLabel}>Enter Your Name</label>
+        <input className={styles.formInput} ref={playerNameInputRef} type="text" id="playerName" name="playerName" defaultValue={'Anon'} autoFocus/>
       </div>
       <button onClick={submitPlayerNameHandler} className={styles.enterPlayerNameBtn} type="button">Submit Name</button>
     </form>

@@ -9,10 +9,10 @@ const GameEndModal = ({gameEndResults}) => {
   return (
     <div className={styles.gameEndModalBackground}>
       <div className={styles.gameEndModalCont}>
-        <h3 className={styles.resultsHeading}>Results:</h3>
-        <p>You took: {formatDistanceStrict(gameEndResults[0].start_time, gameEndResults[0].end_time, {includeSeconds: true, addSuffix: false})}</p>
+        <h3 className={styles.resultsHeading}>Results</h3>
+        <p className={styles.resultsPara}>You took: {formatDistanceStrict(gameEndResults[0].start_time, gameEndResults[0].end_time, {includeSeconds: true, addSuffix: false})}</p>
         <PlayerNameForm/>
-        <Link to='/'>Try a new game</Link>
+        <Link to='/' className={styles.tryNewGameLink}>Try a new game</Link>
       </div>
     </div>
   )

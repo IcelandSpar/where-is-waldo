@@ -26,7 +26,9 @@ const ItemList = ({ waldoItems }) => {
             return (
               <li className={styles.itemListLiCont} key={index}>
                 <div>{item.is_found ? <img src={searchCheckIcon} alt='item found' width={'24px'} height={'24px'}/>: <img src={searchMysteryIcon} alt='item found' width={'24px'} height={'24px'}/>}</div>
-                <div>{item.item_name}</div>
+                <p style={{
+                  textDecoration: item.is_found ? 'line-through' : 'none',
+                }}>{item.item_name}</p>
               </li>
             )
           })

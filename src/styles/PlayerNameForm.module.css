@@ -13,11 +13,34 @@
   font-size: 1.5rem;
 }
 
+.enterNameLabel {
+  font-family: 'Bitcount';
+}
+
 .formInput {
   font-size: 1.5rem;
   padding: .5rem 1rem;
+  background-color: #31717b;
+  border: 2px solid #4ca1b3;
+  color: white;
+  font-family: 'Bitcount Grid Single';
+  text-align: center;
+  border-radius: 30px;
 }
 
 .enterPlayerNameBtn {
-  padding: .5rem 1rem;
+  padding: .7rem 1rem;
+  background-color: rgb(218, 215, 215);
+  font-family: 'Bitcount';
+  font-size: 1.5rem;
+  cursor: pointer;
+  border-radius: 15px;
+  color: black;
+  transition: .3s background-color ease-out, .3s color ease-out;
+  border: 2px solid #4b1f20;
+}
+
+.enterPlayerNameBtn:hover {
+  background-color: #c89f56;
+  color: white;
 }
