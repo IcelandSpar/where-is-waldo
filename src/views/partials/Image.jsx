@@ -96,7 +96,7 @@ const Image = ({ targetOptions, setTargetOptions, styles, waldoItems, setSubmitR
     formData.append("yCoord", pointClicked.yPageCoord);
     formData.append("itemName", itemName);
 
-    fetch(`http://localhost:3000/game/check-if-correct-coord`, {
+    fetch(`${import.meta.env.VITE_FETCH_BASE_URL}/game/check-if-correct-coord`, {
       method: "POST",
       body: new URLSearchParams(formData),
     })
@@ -110,7 +110,7 @@ const Image = ({ targetOptions, setTargetOptions, styles, waldoItems, setSubmitR
             isCorrect: true,
             message: 'Correct!',
           })
-            fetch(`http://localhost:3000/game/get-player-items/${imageId}/${playerId}`, {
+            fetch(`${import.meta.env.VITE_FETCH_BASE_URL}/game/get-player-items/${imageId}/${playerId}`, {
             method: "GET",
             })
             .then((res) => res.json())
@@ -140,7 +140,7 @@ const Image = ({ targetOptions, setTargetOptions, styles, waldoItems, setSubmitR
         id="gameImage"
         onClick={handleImageClick}
         className={styles.gameImage}
-        src={"http://localhost:3000/images/i_spy_10.jpg"}
+        src={`${import.meta.env.VITE_FETCH_BASE_URL}/images/i_spy_10.jpg`}
       ></img>
       {pointClicked == null ? null : (
         <div

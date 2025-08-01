@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import { format } from "date-fns";
 
+import fireworksAnimation from '../../assets/fireworks.gif';
+
 import styles from "../../styles/Leaderboards.module.css";
 
 const Leaderboards = ({capitalizeFirstLetter}) => {
@@ -31,8 +33,9 @@ const Leaderboards = ({capitalizeFirstLetter}) => {
         <p>Loading Leaderboard...</p>
       ) : null}
       {!leaderboard ? null : (
+        <>
+        <div className={styles.leaderboardCaption}><a href="https://pixabay.com/users/placidplace-25572496/?utm_source=link-attribution&utm_medium=referral&utm_campaign=animation&utm_content=9582"><img src={fireworksAnimation} alt="fireworks" /></a><p>Top 10 Players of all games</p><a href="https://pixabay.com/users/placidplace-25572496/?utm_source=link-attribution&utm_medium=referral&utm_campaign=animation&utm_content=9582"><img src={fireworksAnimation} alt="fireworks" /></a></div>
         <table>
-          <caption className={styles.leaderboardCaption}>Top 10 Players of all games</caption>
           <thead>
             <tr>
               <th>Player Name</th>
@@ -60,6 +63,7 @@ const Leaderboards = ({capitalizeFirstLetter}) => {
                 })}
           </tbody>
         </table>
+        </>
       )}
     {fetchLeaderboardErr ? (<p>Something went wrong</p>): null}
 

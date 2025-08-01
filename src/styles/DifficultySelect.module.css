@@ -47,3 +47,24 @@
   font-family: 'Bitcount Grid Single';
 
 }
+
+.checkLeaderboardCont {
+  display: flex;
+  align-items: center;
+  gap: .3rem;
+  font-family: 'Bitcount Grid Single';
+  background-color: transparent;
+  color: white;
+  font-size: 1rem;
+  border: none;
+  cursor: pointer;
+}
+
+.checkLeaderboardText {
+  text-decoration: underline;
+  text-underline-offset: .2rem;
+}
+
+.openLeaderboardIcon {
+  font-family: 'Bitcount';
+}

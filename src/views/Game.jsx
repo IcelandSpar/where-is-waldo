@@ -33,7 +33,7 @@ const Game = () => {
   const { difficulty, imageId, playerId } = useParams();
 
   useEffect(() => {
-    fetch(`http://localhost:3000/game/get-player-items/${imageId}/${playerId}`, {
+    fetch(`${import.meta.env.VITE_FETCH_BASE_URL}/game/get-player-items/${imageId}/${playerId}`, {
       method: "GET",
     })
       .then((res) => res.json())

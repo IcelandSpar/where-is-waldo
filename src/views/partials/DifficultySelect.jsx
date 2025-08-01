@@ -28,10 +28,21 @@ const DifficultySelect = ({capitalizeFirstLetter}) => {
       });
   }, []);
 
+  const fetchGameLeaderboard = (game) => {
+    console.log(game)
+  }
+
   const handleGameSelectBtn = (e, game) => {
     e.preventDefault();
-    console.log(game);
+    const targetClassName = e.target.className.split(' ')[1];
+    if(targetClassName == 'checkLeaderboardCont' 
+      || targetClassName == 'checkLeaderboardText' 
+      || targetClassName == 'openLeaderboardIcon') {
+        fetchGameLeaderboard(game);
+    } else {
+
     // starts game and redirects to game
+
     fetch(
       `${import.meta.env.VITE_FETCH_BASE_URL}/game/create-player/${
         game.image_id
@@ -57,6 +68,10 @@ const DifficultySelect = ({capitalizeFirstLetter}) => {
       .catch((err) => {
         console.error(err);
       });
+    }
+
+
+
   };
 
 
@@ -83,6 +98,10 @@ const DifficultySelect = ({capitalizeFirstLetter}) => {
                 <div className={styles.backgroundDimmer}>
                   <h3 className={styles.gameTitle}>{game.image_name}</h3>
                   <p className={styles.gameDifficulty}>Difficulty: {capitalizeFirstLetter(game.difficulty)}</p>
+                  <button className={`${styles.checkLeaderboardCont} checkLeaderboardCont`}>
+                    <p className={`${styles.checkLeaderboardText} checkLeaderboardText`}>Check out the leaderboard!</p>
+                    <div className={`${styles.openLeaderboardIcon} openLeaderboardIcon`}>\/</div>
+                  </button>
                 </div>
               </li>
             );
