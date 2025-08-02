@@ -5,6 +5,7 @@ import GameLeaderboard from "./GameLeaderboard.jsx";
 
 import minimizeIcon from "../../assets/minimize_icon.svg";
 import leaderboardIcon from "../../assets/leaderboard.svg";
+import OpenLeaderboardBtn from "./OpenLeaderboardBtn.jsx";
 
 const GamePreview = ({ styles, game, capitalizeFirstLetter }) => {
   const navigate = useNavigate();
@@ -68,28 +69,7 @@ const GamePreview = ({ styles, game, capitalizeFirstLetter }) => {
         <p className={styles.gameDifficulty}>
           Difficulty: {capitalizeFirstLetter(game.difficulty)}
         </p>
-        <button
-          className={`${styles.checkLeaderboardCont} checkLeaderboardCont`}
-        >
-          <p className={`${styles.checkLeaderboardText} checkLeaderboardText`}>
-            Check out the leaderboard!
-          </p>
-          <div className={`${styles.openLeaderboardIcon} openLeaderboardIcon`}>
-            {!isLeaderboardOpen ? (
-              <img
-                className={`${styles.leaderboardIcon} leaderboardIcon`}
-                src={leaderboardIcon}
-                alt="leaderboard"
-              />
-            ) : (
-              <img
-                className={`${styles.collapseLeaderboardIcon} leaderboardIcon`}
-                src={minimizeIcon}
-                alt="close leaderboard table"
-              />
-            )}
-          </div>
-        </button>
+        <OpenLeaderboardBtn isLeaderboardOpen={isLeaderboardOpen}/>
         {!isLeaderboardOpen? null : (
           <GameLeaderboard image_id={game.image_id} setIsLeaderboardOpen={setIsLeaderboardOpen} isLeaderboardOpen={isLeaderboardOpen}/>
         )}
