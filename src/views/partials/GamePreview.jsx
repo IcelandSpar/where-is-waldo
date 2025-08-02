@@ -3,35 +3,14 @@ import { useNavigate } from "react-router-dom";
 import Leaderboards from "./Leaderboards";
 import GameLeaderboard from "./GameLeaderboard.jsx";
 
-import minimizeIcon from '../../assets/minimize_icon.svg';
-import leaderboardIcon from '../../assets/leaderboard.svg';
+import minimizeIcon from "../../assets/minimize_icon.svg";
+import leaderboardIcon from "../../assets/leaderboard.svg";
 
 const GamePreview = ({ styles, game, capitalizeFirstLetter }) => {
   const navigate = useNavigate();
-  const [gameLeaderboard, setGameLeaderboard] = useState(null);
   const [isLeaderboardOpen, setIsLeaderboardOpen] = useState(false);
-  const [fetchLeaderboardErr, setFetchLeaderboardErr] = useState(false);
-  const [isLeaderboardLoading, setIsLeaderboardLoading] = useState(false);
 
-  const fetchGameLeaderboard = (game) => {
-    setIsLeaderboardOpen((prev) => !prev);
-    setFetchLeaderboardErr(false);
-    if (isLeaderboardOpen) {
-      setIsLeaderboardLoading(true);
-      fetch(
-        `${import.meta.env.VITE_FETCH_BASE_URL}/game/get-game-leaderboard/${
-          game.image_id
-        }`
-      )
-        .then((res) => res.json())
-        .then((res) => setGameLeaderboard(res))
-        .catch((err) => {
-          console.error(err);
-          setFetchLeaderboardErr(true);
-        })
-        .finally(() => setIsLeaderboardLoading(false));
-    }
-  };
+
 
   const handleGameSelectBtn = (e, game) => {
     e.preventDefault();
@@ -42,7 +21,7 @@ const GamePreview = ({ styles, game, capitalizeFirstLetter }) => {
       targetClassName == "openLeaderboardIcon" ||
       targetClassName == "leaderboardIcon"
     ) {
-      fetchGameLeaderboard(game);
+      setIsLeaderboardOpen((prev) => !prev);
     } else {
       // starts game and redirects to game
 
@@ -96,12 +75,25 @@ const GamePreview = ({ styles, game, capitalizeFirstLetter }) => {
             Check out the leaderboard!
           </p>
           <div className={`${styles.openLeaderboardIcon} openLeaderboardIcon`}>
-            {!isLeaderboardOpen ? <img className={`${styles.leaderboardIcon} leaderboardIcon`} src={leaderboardIcon} alt="leaderboard" /> : <img className={`${styles.collapseLeaderboardIcon} leaderboardIcon`} src={minimizeIcon} alt="close leaderboard table"/>}
+            {!isLeaderboardOpen ? (
+              <img
+                className={`${styles.leaderboardIcon} leaderboardIcon`}
+                src={leaderboardIcon}
+                alt="leaderboard"
+              />
+            ) : (
+              <img
+                className={`${styles.collapseLeaderboardIcon} leaderboardIcon`}
+                src={minimizeIcon}
+                alt="close leaderboard table"
+              />
+            )}
           </div>
         </button>
-        {!isLeaderboardOpen || isLeaderboardLoading ? null : <GameLeaderboard leaderboardContent={gameLeaderboard}/>}
-        {isLeaderboardLoading && isLeaderboardOpen ? <p>Loading Leaderboard...</p> : null}
-        {!fetchLeaderboardErr ? null : <p>Something went wrong...</p>}
+        {!isLeaderboardOpen? null : (
+          <GameLeaderboard image_id={game.image_id} setIsLeaderboardOpen={setIsLeaderboardOpen} isLeaderboardOpen={isLeaderboardOpen}/>
+        )}
+
       </div>
     </li>
   );
