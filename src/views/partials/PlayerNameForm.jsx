@@ -1,10 +1,11 @@
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 
 import styles from '../../styles/PlayerNameForm.module.css';
 
 const PlayerNameForm = () => {
   const playerNameInputRef = useRef(null);
+  const [ formErr, setFormErr ] = useState(null);
 
   const navigate = useNavigate();
 
@@ -12,6 +13,7 @@ const PlayerNameForm = () => {
 
   const submitPlayerNameHandler = (e) => {
     e.preventDefault();
+    setFormErr(null);
     const formData = new FormData();
     formData.append('playerName', playerNameInputRef.current.value);
     formData.append('playerId', playerId);
@@ -22,14 +24,31 @@ const PlayerNameForm = () => {
     .then((res) => res.json())
     .then((res) => {
       console.log(res)
-      navigate('/');
-    });
+      if(!res.errors) {
+        navigate('/');
+      } else if(res.errors.errors) {
+        setFormErr([...res.errors.errors]);
+
+      }
+    })
+    .catch((err) => {
+      console.error(err);
+    })
 
   }
 
 
   return (
     <form className={styles.playerNameForm} >
+      {formErr == null ? null : (
+        <div className={styles.errCont}>
+        <h4 className={styles.fixErrorsHeading}>Please Fix the Errors</h4>
+      <ul className={styles.errorUl}>
+        {formErr.map((errMsg, indx) => <li key={indx}>{errMsg.msg}</li>)}
+      </ul>
+      </div>
+      )}
+
       <div className={styles.formLabelAndInput}>
         <label htmlFor="playerName" className={styles.enterNameLabel}>Enter Your Name</label>
         <input className={styles.formInput} ref={playerNameInputRef} type="text" id="playerName" name="playerName" defaultValue={'Anon'} autoFocus/>
