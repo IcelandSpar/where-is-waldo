@@ -27,12 +27,12 @@
   overflow-y: auto;
   max-height: 500px;
   scrollbar-color: gray #1b1b1b;
-
 }
 
 .resultsHeading {
   font-size: 2.3rem;
   font-family: 'Bitcount';
+  margin-top: 1rem;
 }
 
 .resultsPara {
@@ -41,4 +41,18 @@
 
 .tryNewGameLink, .tryNewGameLink:hover, .tryNewGameLink:focus, .tryNewGameLink:visited, .tryNewGameLink:active {
   color: white;
+  margin-bottom: 1rem;
+}
+
+@media (max-width: 700px) {
+.gameEndModalCont {
+  padding: 0;
+}
+}
+
+@media (max-width: 400px) {
+  .gameLeaderboardCont {
+    scrollbar-color: gray #1b1b1b;
+
+  }
 }

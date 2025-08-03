@@ -7,6 +7,8 @@ table {
   width: 100%;
 }
 
+
+
 .leaderboardCaption {
   font-size: 2rem;
   margin-bottom: 1rem;
@@ -17,6 +19,10 @@ table {
   align-items: center;
   justify-content: center;
   text-align: center;
+}
+
+.leaderboardCaption {
+  margin-bottom: 1rem;
 }
 
 thead th {
@@ -67,4 +73,15 @@ tbody tr:last-child td {
 
 tbody tr:last-child th {
   border-bottom: none;
+}
+
+@media (max-width: 700px) {
+  .leaderboardCont {
+  overflow-x: scroll;
+  max-width: 600px;
+  scrollbar-color: gray #1b1b1b;
+
+}
+
+
 }

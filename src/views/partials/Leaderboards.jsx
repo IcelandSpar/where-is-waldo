@@ -35,9 +35,11 @@ const Leaderboards = ({capitalizeFirstLetter}) => {
       {!leaderboard ? null : (
         <>
         <div className={styles.leaderboardCaption}><a href="https://pixabay.com/users/placidplace-25572496/?utm_source=link-attribution&utm_medium=referral&utm_campaign=animation&utm_content=9582"><img src={fireworksAnimation} alt="fireworks" /></a><p>Top 10 Players of all games</p><a href="https://pixabay.com/users/placidplace-25572496/?utm_source=link-attribution&utm_medium=referral&utm_campaign=animation&utm_content=9582"><img src={fireworksAnimation} alt="fireworks" /></a></div>
-        <table>
+        <div className={styles.leaderboardCont}>
+        <table className={styles.leaderboardTable}>
           <thead>
             <tr>
+              <th>Rank</th>
               <th>Player Name</th>
               <th>Game Name</th>
               <th>Difficulty</th>
@@ -51,6 +53,7 @@ const Leaderboards = ({capitalizeFirstLetter}) => {
               : leaderboard.map((playerRecord, indx) => {
                   return (
                     <tr key={playerRecord.player_id}>
+                      <td>{indx + 1}.</td>
                       <th>{playerRecord.name}</th>
                       <td>{playerRecord.image_name}</td>
                       <td>{capitalizeFirstLetter(playerRecord.difficulty)}</td>
@@ -63,6 +66,7 @@ const Leaderboards = ({capitalizeFirstLetter}) => {
                 })}
           </tbody>
         </table>
+        </div>
         </>
       )}
     {fetchLeaderboardErr ? (<p>Something went wrong</p>): null}

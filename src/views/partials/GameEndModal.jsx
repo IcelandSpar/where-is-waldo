@@ -9,7 +9,7 @@ import GameLeaderboard from './GameLeaderboard';
 import OpenLeaderboardBtn from './OpenLeaderboardBtn';
 
 const GameEndModal = ({gameEndResults}) => {
-  const [ isLeaderboardOpen, setIsLeaderboardOpen ] = useState(true);
+  const [ isLeaderboardOpen, setIsLeaderboardOpen ] = useState(false);
 
   const { imageId } = useParams();
 
@@ -22,7 +22,11 @@ const GameEndModal = ({gameEndResults}) => {
         <div onClick={() => setIsLeaderboardOpen((prev) => !prev)}>
         <OpenLeaderboardBtn isLeaderboardOpen={isLeaderboardOpen}/>
         </div>
-          {!isLeaderboardOpen ? null : <GameLeaderboard image_id={imageId} isLeaderboardOpen={isLeaderboardOpen} setIsLeaderboardOpen={setIsLeaderboardOpen}/>}
+          {!isLeaderboardOpen ? null : (
+            <div className={styles.gameLeaderboardCont}>
+            <GameLeaderboard image_id={imageId} isLeaderboardOpen={isLeaderboardOpen} setIsLeaderboardOpen={setIsLeaderboardOpen}/>
+            </div>
+            )}
         <Link to='/' className={styles.tryNewGameLink}>Try a new game</Link>
       </div>
     </div>

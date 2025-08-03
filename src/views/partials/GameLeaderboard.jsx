@@ -42,9 +42,11 @@ const GameLeaderboard = ({image_id, setIsLeaderboardOpen, isLeaderboardOpen}) =>
     {!isLeaderboardLoading ? null : <p>Loading Leaderboard...</p>}
     {!fetchLeaderboardErr ? null : <p>Something went wrong...</p>}
     {leaderboardContent == null ? null : (
+      <div className={styles.gameLeaderboardCont}>
           <table className={styles.gameLeaderboardTable}>
       <thead>
         <tr>
+          <th>Rank</th>
           <th>Player</th>
           <th>Date</th>
           <th>Time Taken</th>
@@ -54,6 +56,7 @@ const GameLeaderboard = ({image_id, setIsLeaderboardOpen, isLeaderboardOpen}) =>
       {!leaderboardContent ? null : leaderboardContent.map((rowContent, index) => {
         return (
           <tr key={index}>
+            <td>{index + 1}.</td>
             <th>{rowContent.name}</th>
             <td>{format(rowContent.end_time, "LLL-d-y")}</td>
             <td>{parseFloat(rowContent.difference).toFixed(2)}</td>
@@ -62,6 +65,7 @@ const GameLeaderboard = ({image_id, setIsLeaderboardOpen, isLeaderboardOpen}) =>
       })}
       </tbody>
     </table>
+    </div>
     )}
 
     </>
