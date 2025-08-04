@@ -25,7 +25,7 @@
   gap: 1rem;
   align-items: center;
   overflow-y: auto;
-  max-height: 500px;
+  max-height: 470px;
   scrollbar-color: gray #1b1b1b;
 }
 
@@ -47,6 +47,12 @@
 .tryNewGameLink, .tryNewGameLink:hover, .tryNewGameLink:focus, .tryNewGameLink:visited, .tryNewGameLink:active {
   color: white;
   margin-bottom: 1rem;
+}
+
+@media (max-height: 500px) {
+  .gameEndModalCont {
+    height: 90vh;
+  }
 }
 
 @media (max-width: 700px) {
