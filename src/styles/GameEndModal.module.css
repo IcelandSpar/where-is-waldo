@@ -49,6 +49,11 @@
   margin-bottom: 1rem;
 }
 
+.confettiExplosionCont {
+  position: fixed;
+  transform: translateX(50%);
+}
+
 @media (max-height: 500px) {
   .gameEndModalCont {
     height: 90vh;

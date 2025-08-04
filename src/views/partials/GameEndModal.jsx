@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import { formatDistanceStrict } from 'date-fns';
 
 import PlayerNameForm from './PlayerNameForm';
+import ConfettiExplosion from "react-confetti-explosion";
 
 import styles from '../../styles/GameEndModal.module.css';
 import GameLeaderboard from './GameLeaderboard';
@@ -11,6 +12,7 @@ import OpenLeaderboardBtn from './OpenLeaderboardBtn';
 const GameEndModal = ({gameEndResults}) => {
   const [ isLeaderboardOpen, setIsLeaderboardOpen ] = useState(false);
   const [ isPlayerTopTen, setIsPlayerTopTen ] = useState(false);
+  const [ isExploding, setIsExploding ] = useState(false);
 
   const { imageId, playerId } = useParams();
 
@@ -20,6 +22,7 @@ const GameEndModal = ({gameEndResults}) => {
     })
     .then((res) => res.json())
     .then((res) => {
+      setIsExploding(res.madeTopTen)
       setIsPlayerTopTen(res);
     })
     .catch((err) => console.error(err));
@@ -27,6 +30,10 @@ const GameEndModal = ({gameEndResults}) => {
 
   return (
     <div className={styles.gameEndModalBackground}>
+     {isExploding &&  (
+      <div className={styles.confettiExplosionCont}>
+      <ConfettiExplosion zIndex={100} duration={5000} width={4000} onComplete={() => setIsExploding(false)}/>
+      </div>)}
       <div className={styles.gameEndModalCont}>
         <h3 className={styles.resultsHeading}>Results</h3>
         <p className={styles.resultsPara}>You took: {formatDistanceStrict(gameEndResults[0].start_time, gameEndResults[0].end_time, {includeSeconds: true, addSuffix: false})}</p>
