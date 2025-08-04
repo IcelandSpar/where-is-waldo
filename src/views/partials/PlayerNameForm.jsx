@@ -39,7 +39,7 @@ const PlayerNameForm = () => {
 
 
   return (
-    <form className={styles.playerNameForm} >
+    <form onSubmit={submitPlayerNameHandler} className={styles.playerNameForm} >
       {formErr == null ? null : (
         <div className={styles.errCont}>
         <h4 className={styles.fixErrorsHeading}>Please Fix the Errors</h4>

@@ -39,6 +39,11 @@
   font-family: 'Bitcount Grid Single';
 }
 
+.topTenCont {
+  font-family: 'Bitcount Grid Single';
+  text-align: center;
+}
+
 .tryNewGameLink, .tryNewGameLink:hover, .tryNewGameLink:focus, .tryNewGameLink:visited, .tryNewGameLink:active {
   color: white;
   margin-bottom: 1rem;

@@ -1,5 +1,5 @@
 import { Link, useParams } from 'react-router-dom';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { formatDistanceStrict } from 'date-fns';
 
 import PlayerNameForm from './PlayerNameForm';
@@ -10,14 +10,30 @@ import OpenLeaderboardBtn from './OpenLeaderboardBtn';
 
 const GameEndModal = ({gameEndResults}) => {
   const [ isLeaderboardOpen, setIsLeaderboardOpen ] = useState(false);
+  const [ isPlayerTopTen, setIsPlayerTopTen ] = useState(false);
 
-  const { imageId } = useParams();
+  const { imageId, playerId } = useParams();
+
+  useEffect(() => {
+    fetch(`${import.meta.env.VITE_FETCH_BASE_URL}/game/check-if-top-ten/${imageId}/${playerId}`, {
+      method: 'GET',
+    })
+    .then((res) => res.json())
+    .then((res) => {
+      setIsPlayerTopTen(res);
+    })
+    .catch((err) => console.error(err));
+  }, []);
 
   return (
     <div className={styles.gameEndModalBackground}>
       <div className={styles.gameEndModalCont}>
         <h3 className={styles.resultsHeading}>Results</h3>
         <p className={styles.resultsPara}>You took: {formatDistanceStrict(gameEndResults[0].start_time, gameEndResults[0].end_time, {includeSeconds: true, addSuffix: false})}</p>
+        {!isPlayerTopTen.madeTopTen ? null : <div className={styles.topTenCont}>
+        <p>You made it to top 10!</p>
+        <p>Your Rank is {isPlayerTopTen.rank}</p>
+        </div>}
         <PlayerNameForm/>
         <div onClick={() => setIsLeaderboardOpen((prev) => !prev)}>
         <OpenLeaderboardBtn isLeaderboardOpen={isLeaderboardOpen}/>
