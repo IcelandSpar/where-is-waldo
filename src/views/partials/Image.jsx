@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import SelectMenu from "./SelectMenu.jsx";
 
 
-const Image = ({ targetOptions, setTargetOptions, styles, waldoItems, setSubmitResultMsg, completedWaldoItems, setCompletedWaldoItems, setWaldoItems, setIsGameWon, setGameEndResults }) => {
+const Image = ({ targetOptions, setTargetOptions, styles, waldoItems, setSubmitResultMsg, completedWaldoItems, setCompletedWaldoItems, setWaldoItems, setIsGameWon, setGameEndResults , checkIfGameWon}) => {
   const [ pointClicked, setPointClicked ] = useState(null);
   
   const { imageId, playerId } = useParams();
@@ -74,16 +74,7 @@ const Image = ({ targetOptions, setTargetOptions, styles, waldoItems, setSubmitR
     }, 3000)
   };
 
-  const checkIfGameWon = (imageId, playerId) => {
-    fetch(`${import.meta.env.VITE_FETCH_BASE_URL}/game/check-if-all-items-found/${imageId}/${playerId}`, {
-      method: 'GET',
-    })
-    .then((res) => res.json())
-    .then((res) => {
-      setGameEndResults(res.endGameResults);
-      setIsGameWon(res.allItemsFound)
-    })
-  }
+
 
     const submitPointClicked = (e, itemName) => {
     e.preventDefault();

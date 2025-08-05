@@ -56,6 +56,7 @@ const GamePreview = ({ styles, game, capitalizeFirstLetter }) => {
 
   return (
     <li
+    tabIndex={0}
       onClick={(e) => handleGameSelectBtn(e, game)}
       className={styles.gameListLi}
       style={{

@@ -32,12 +32,26 @@ const Game = () => {
   });
   const { difficulty, imageId, playerId } = useParams();
 
+    const checkIfGameWon = (imageId, playerId) => {
+    fetch(`${import.meta.env.VITE_FETCH_BASE_URL}/game/check-if-all-items-found/${imageId}/${playerId}`, {
+      method: 'GET',
+    })
+    .then((res) => res.json())
+    .then((res) => {
+      setGameEndResults(res.endGameResults);
+      setIsGameWon(res.allItemsFound)
+    })
+  }
+
   useEffect(() => {
     fetch(`${import.meta.env.VITE_FETCH_BASE_URL}/game/get-player-items/${imageId}/${playerId}`, {
       method: "GET",
     })
       .then((res) => res.json())
-      .then((res) => setWaldoItems(res));
+      .then((res) => {
+        setWaldoItems(res);
+        checkIfGameWon(imageId, playerId)
+      });
 
   }, [imageId, playerId]);
 
@@ -49,7 +63,7 @@ const Game = () => {
         {submitResultMsg != null ? (
           <SubmitMsg setSubmitResultMsg={setSubmitResultMsg} submitResultMsg={submitResultMsg}/>
         ) : null}
-        <Image styles={styles}setIsGameWon={setIsGameWon}  setWaldoItems={setWaldoItems} setTargetOptions={setTargetOptions}  targetOptions={targetOptions} waldoItems={waldoItems} setSubmitResultMsg={setSubmitResultMsg} completedWaldoItems={completedWaldoItems} setCompletedWaldoItems={setCompletedWaldoItems} setGameEndResults={setGameEndResults}/>
+        <Image styles={styles}setIsGameWon={setIsGameWon} checkIfGameWon={checkIfGameWon} setWaldoItems={setWaldoItems} setTargetOptions={setTargetOptions}  targetOptions={targetOptions} waldoItems={waldoItems} setSubmitResultMsg={setSubmitResultMsg} completedWaldoItems={completedWaldoItems} setCompletedWaldoItems={setCompletedWaldoItems} setGameEndResults={setGameEndResults}/>
         <ItemList waldoItems={waldoItems}/>
       </main>
     </div>
