@@ -1,5 +1,6 @@
 import Home from './views/Home.jsx';
 import Game from './views/Game.jsx';
+import Error from './views/Error.jsx';
 
 const routes = [
   {
@@ -9,6 +10,10 @@ const routes = [
   {
     path: '/:imageId/:playerId/:difficulty',
     element: <Game/>,
+  },
+  {
+    path: '/*',
+    element: <Error/>
   }
 ];
 
