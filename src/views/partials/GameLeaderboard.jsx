@@ -65,7 +65,7 @@ const GameLeaderboard = ({image_id, setIsLeaderboardOpen, isLeaderboardOpen}) =>
               textDecoration: playerId == rowContent.player_id ? 'underline' : 'none',
             }}>{rowContent.name}</th>
             <td>{format(rowContent.end_time, "LLL-d-y")}</td>
-            <td>{parseFloat(rowContent.difference).toFixed(2)}</td>
+            <td>{parseFloat(rowContent.difference).toFixed(2)} Seconds</td>
           </tr>
         )
       })}

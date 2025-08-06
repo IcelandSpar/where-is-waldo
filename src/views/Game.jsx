@@ -28,7 +28,7 @@ const Game = () => {
     isMenuActive: false,
     menuWidth: 200,
     menuHeight: 200,
-    menuFontSize: "1.2rem",
+    menuFontSize: "1rem",
   });
   const { difficulty, imageId, playerId } = useParams();
 

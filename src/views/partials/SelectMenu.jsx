@@ -35,7 +35,7 @@ const SelectMenu = ({ styles, targetOptions, pointClicked, orientDropDownMenu, s
                         fontSize: targetOptions.menuFontSize,
                       }}
                       type="button"
-                      onClick={(e) => submitPointClicked(e, 'shell')}
+                      onClick={(e) => submitPointClicked(e, item.item_name)}
                     >
                       {item.item_name}
                     </button>
