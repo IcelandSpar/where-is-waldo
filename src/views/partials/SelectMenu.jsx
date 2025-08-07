@@ -1,4 +1,4 @@
-const SelectMenu = ({ styles, targetOptions, pointClicked, orientDropDownMenu, submitPointClicked, waldoItems }) => {
+const SelectMenu = ({ styles, capitalizeFirstLetter,targetOptions, pointClicked, orientDropDownMenu, submitPointClicked, waldoItems }) => {
 
   return (
           <div
@@ -37,7 +37,7 @@ const SelectMenu = ({ styles, targetOptions, pointClicked, orientDropDownMenu, s
                       type="button"
                       onClick={(e) => submitPointClicked(e, item.item_name)}
                     >
-                      {item.item_name}
+                      {capitalizeFirstLetter(item.item_name)}
                     </button>
                   </li>
                 );

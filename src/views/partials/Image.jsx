@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import SelectMenu from "./SelectMenu.jsx";
 
 
-const Image = ({ targetOptions, setTargetOptions, styles, waldoItems, setSubmitResultMsg, completedWaldoItems, setCompletedWaldoItems, setWaldoItems, setIsGameWon, setGameEndResults , checkIfGameWon}) => {
+const Image = ({ capitalizeFirstLetter, imagePath, targetOptions, setTargetOptions, styles, waldoItems, setSubmitResultMsg, completedWaldoItems, setCompletedWaldoItems, setWaldoItems, setIsGameWon, setGameEndResults , checkIfGameWon}) => {
   const [ pointClicked, setPointClicked ] = useState(null);
   
   const { imageId, playerId } = useParams();
@@ -131,7 +131,7 @@ const Image = ({ targetOptions, setTargetOptions, styles, waldoItems, setSubmitR
         id="gameImage"
         onClick={handleImageClick}
         className={styles.gameImage}
-        src={`${import.meta.env.VITE_FETCH_BASE_URL}/images/i_spy_10.jpg`}
+        src={`${import.meta.env.VITE_FETCH_BASE_URL}/images/${imagePath}`}
       ></img>
       {pointClicked == null ? null : (
         <div
@@ -166,6 +166,7 @@ const Image = ({ targetOptions, setTargetOptions, styles, waldoItems, setSubmitR
       {pointClicked == null || !targetOptions.isMenuActive ? null : (
         <SelectMenu
           styles={styles}
+          capitalizeFirstLetter={capitalizeFirstLetter}
           targetOptions={targetOptions}
           pointClicked={pointClicked}
           orientDropDownMenu={orientDropDownMenu}

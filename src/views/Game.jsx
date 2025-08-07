@@ -14,6 +14,7 @@ import iSpy10 from "../assets/i_spy_10.jpg";
 
 const Game = () => {
   const [ isGameWon, setIsGameWon ] = useState(false);
+  const [ imagePath, setImagePath ] = useState(null);
   const [ gameEndResults, setGameEndResults ] = useState(null);
   const [ waldoItems, setWaldoItems ] = useState();
   const [ completedWaldoItems, setCompletedWaldoItems ] = useState([]);
@@ -32,6 +33,11 @@ const Game = () => {
   });
   const { difficulty, imageId, playerId } = useParams();
 
+   const capitalizeFirstLetter = (str) => {
+    let capitalizedFirstLetter = str[0].toUpperCase();
+    return capitalizedFirstLetter + str.slice(1);
+  };
+
     const checkIfGameWon = (imageId, playerId) => {
     fetch(`${import.meta.env.VITE_FETCH_BASE_URL}/game/check-if-all-items-found/${imageId}/${playerId}`, {
       method: 'GET',
@@ -44,6 +50,17 @@ const Game = () => {
   }
 
   useEffect(() => {
+
+    fetch(`${import.meta.env.VITE_FETCH_BASE_URL}/game/get-image-path/${imageId}`, {
+      method: 'GET',
+    })
+    .then((res) => res.json())
+    .then((res) => {
+      setImagePath(res[0].image_path);
+      console.log(res)
+    })
+    .catch((err) => console.error(err));
+
     fetch(`${import.meta.env.VITE_FETCH_BASE_URL}/game/get-player-items/${imageId}/${playerId}`, {
       method: "GET",
     })
@@ -63,8 +80,8 @@ const Game = () => {
         {submitResultMsg != null ? (
           <SubmitMsg setSubmitResultMsg={setSubmitResultMsg} submitResultMsg={submitResultMsg}/>
         ) : null}
-        <Image styles={styles}setIsGameWon={setIsGameWon} checkIfGameWon={checkIfGameWon} setWaldoItems={setWaldoItems} setTargetOptions={setTargetOptions}  targetOptions={targetOptions} waldoItems={waldoItems} setSubmitResultMsg={setSubmitResultMsg} completedWaldoItems={completedWaldoItems} setCompletedWaldoItems={setCompletedWaldoItems} setGameEndResults={setGameEndResults}/>
-        <ItemList waldoItems={waldoItems}/>
+        <Image capitalizeFirstLetter={capitalizeFirstLetter}  imagePath={imagePath} styles={styles} setIsGameWon={setIsGameWon} checkIfGameWon={checkIfGameWon} setWaldoItems={setWaldoItems} setTargetOptions={setTargetOptions}  targetOptions={targetOptions} waldoItems={waldoItems} setSubmitResultMsg={setSubmitResultMsg} completedWaldoItems={completedWaldoItems} setCompletedWaldoItems={setCompletedWaldoItems} setGameEndResults={setGameEndResults}/>
+        <ItemList capitalizeFirstLetter={capitalizeFirstLetter} waldoItems={waldoItems}/>
       </main>
     </div>
   );

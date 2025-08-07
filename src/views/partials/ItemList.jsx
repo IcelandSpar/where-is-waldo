@@ -7,7 +7,7 @@ import menuArrowCloseIcon from '../../assets/arrow_menu_close_icon.svg';
 
 import styles from '../../styles/ItemList.module.css';
 
-const ItemList = ({ waldoItems }) => {
+const ItemList = ({ capitalizeFirstLetter, waldoItems }) => {
   const [ isItemListShown, setIsItemListShown ] = useState(true);
 
   const handleAsideBtn = (e) => {
@@ -28,7 +28,7 @@ const ItemList = ({ waldoItems }) => {
                 <div>{item.is_found ? <img src={searchCheckIcon} alt='item found' width={'24px'} height={'24px'}/>: <img src={searchMysteryIcon} alt='item found' width={'24px'} height={'24px'}/>}</div>
                 <p style={{
                   textDecoration: item.is_found ? 'line-through' : 'none',
-                }}>{item.item_name}</p>
+                }}>{capitalizeFirstLetter(item.item_name)}</p>
               </li>
             )
           })

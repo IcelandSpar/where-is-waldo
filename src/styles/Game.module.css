@@ -2,6 +2,12 @@ html {
   overflow-x: hidden;
 
 }
+
+
+.overflowHiddenCont {
+  background-image: linear-gradient(#5c2e2e, #4b1f20);
+  height: 100vh;
+}
 .gameMainCont {
   width: 100%;
 }
