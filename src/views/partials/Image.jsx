@@ -48,7 +48,7 @@ const Image = ({ targetOptions, setTargetOptions, styles, waldoItems, setSubmitR
 
   const handleImageClick = (e) => {
     const image = document.getElementById("gameImage");
-    if (targetOptions.isMenuActive) {
+    if (pointClicked != null) {
       setTargetOptions({
         ...targetOptions,
         isMenuActive: false,
