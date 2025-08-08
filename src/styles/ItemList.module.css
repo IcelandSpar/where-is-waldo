@@ -7,12 +7,15 @@
   background-color: rgba(0, 0, 0, 0.815);
   border: 2px solid #c89f56;
   color: white;
+  max-width: 300px;
 }
 
 .itemListContRelativeCont {
   position: relative;
   width: 100%;
   padding: 1rem;
+
+  
 }
 
 .itemListHeading {
@@ -37,6 +40,9 @@
 
 .itemListUlCont {
   list-style-type: none;
+    overflow-y: scroll;
+  max-height: 300px;
+  scrollbar-color: gray #1b1b1b;
 }
 
 .itemListLiCont {
