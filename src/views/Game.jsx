@@ -13,6 +13,7 @@ import styles from "../styles/Game.module.css";
 import iSpy10 from "../assets/i_spy_10.jpg";
 
 const Game = () => {
+  const [ gameLoading, setGameLoading ] = useState(false);
   const [ isGameWon, setIsGameWon ] = useState(false);
   const [ imagePath, setImagePath ] = useState(null);
   const [ gameEndResults, setGameEndResults ] = useState(null);
@@ -49,7 +50,23 @@ const Game = () => {
     })
   }
 
+  const checkIfGameWonReadOnly = (imageId ,playerId) => {
+    fetch(`${import.meta.env.VITE_FETCH_BASE_URL}/game/check-if-game-won-read-only/${imageId}/${playerId}`)
+    .then((res) => res.json())
+    .then((res) => {
+      console.log(res)
+      setGameEndResults(res.endGameResults);
+      setIsGameWon(res.allItemsFound)
+    })
+  }
+
   useEffect(() => {
+
+  setGameLoading(true);
+
+
+    setTimeout(() => {
+
 
     fetch(`${import.meta.env.VITE_FETCH_BASE_URL}/game/get-image-path/${imageId}`, {
       method: 'GET',
@@ -61,20 +78,36 @@ const Game = () => {
     })
     .catch((err) => console.error(err));
 
+
+    fetch(`${import.meta.env.VITE_FETCH_BASE_URL}/game/restart-game/${playerId}`, {
+      method: 'PUT',
+    })
+    .catch((err) => console.error(err))
+
     fetch(`${import.meta.env.VITE_FETCH_BASE_URL}/game/get-player-items/${imageId}/${playerId}`, {
       method: "GET",
     })
       .then((res) => res.json())
       .then((res) => {
         setWaldoItems(res);
-        checkIfGameWon(imageId, playerId)
+        checkIfGameWonReadOnly(imageId, playerId)
+
       });
+      setGameLoading(false)
+    }, 5000)
+
+    
 
   }, [imageId, playerId]);
 
   return (
     <div className={styles.overflowHiddenCont}>
       {isGameWon ? (<GameEndModal gameEndResults={gameEndResults}/>) : null}
+      {gameLoading ? (
+        <div>
+
+        </div>
+      ) : (
       <main className={styles.gameMainCont}>
         <Timer isGameWon={isGameWon}/>
         {submitResultMsg != null ? (
@@ -83,6 +116,8 @@ const Game = () => {
         <Image capitalizeFirstLetter={capitalizeFirstLetter}  imagePath={imagePath} styles={styles} setIsGameWon={setIsGameWon} checkIfGameWon={checkIfGameWon} setWaldoItems={setWaldoItems} setTargetOptions={setTargetOptions}  targetOptions={targetOptions} waldoItems={waldoItems} setSubmitResultMsg={setSubmitResultMsg} completedWaldoItems={completedWaldoItems} setCompletedWaldoItems={setCompletedWaldoItems} setGameEndResults={setGameEndResults}/>
         <ItemList capitalizeFirstLetter={capitalizeFirstLetter} waldoItems={waldoItems}/>
       </main>
+      )}
+
     </div>
   );
 };
