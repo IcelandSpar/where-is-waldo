@@ -119,7 +119,7 @@ const Image = ({ capitalizeFirstLetter, imagePath, targetOptions, setTargetOptio
         }
         setSubmitMsgToNull();
 
-        console.log(res.coordResult)
+        // console.log(res.coordResult)
       })
       .catch((err) => console.error(err));
     setPointClicked(null);
@@ -162,7 +162,6 @@ const Image = ({ capitalizeFirstLetter, imagePath, targetOptions, setTargetOptio
           ></div>
         </div>
       )}
-      {console.log(pointClicked)}
       {pointClicked == null || !targetOptions.isMenuActive ? null : (
         <SelectMenu
           styles={styles}

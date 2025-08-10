@@ -62,7 +62,6 @@ const Game = () => {
     )
       .then((res) => res.json())
       .then((res) => {
-        console.log(res);
         setGameEndResults(res.endGameResults);
         setIsGameWon(res.allItemsFound);
       });
@@ -81,7 +80,6 @@ const Game = () => {
         .then((res) => res.json())
         .then((res) => {
           setImagePath(res[0].image_path);
-          console.log(res);
         })
         .catch((err) => console.error(err));
 

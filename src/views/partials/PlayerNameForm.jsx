@@ -23,7 +23,6 @@ const PlayerNameForm = () => {
     })
     .then((res) => res.json())
     .then((res) => {
-      console.log(res)
       if(!res.errors) {
         navigate('/');
       } else if(res.errors.errors) {

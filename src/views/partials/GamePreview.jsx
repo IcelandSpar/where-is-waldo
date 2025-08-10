@@ -45,7 +45,7 @@ const GamePreview = ({ styles, game, capitalizeFirstLetter }) => {
             }
           )
             .then((res) => res.json())
-            .then((res) => console.log(res));
+            // .then((res) => {});
           navigate(`/${game.image_id}/${res.player_id}/${game.difficulty}`);
         })
         .catch((err) => {

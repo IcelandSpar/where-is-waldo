@@ -39,6 +39,14 @@
   font-family: 'Bitcount Grid Single';
 }
 
+.stopAudioBtn {
+  padding: .5rem 1rem;
+  margin-top: 1rem;
+  font-family: 'Bitcount';
+  border-radius: 15px;
+  cursor: pointer;
+}
+
 .topTenCont {
   font-family: 'Bitcount Grid Single';
   text-align: center;
